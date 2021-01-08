@@ -12,6 +12,8 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
+        '@mysql' => '@app/migrations/mysql',
+        '@psql' => '@app/migrations/postgres',
     ],
     'components' => [
         'cache' => [
