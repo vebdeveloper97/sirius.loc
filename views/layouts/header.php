@@ -273,7 +273,7 @@ use yii\helpers\Html;
 
                 <!-- User Account: style can be found in dropdown.less -->
                 <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <?= \app\widgets\MultiLang\MultiLang::widget(['cssClass'=>'pull-right language']); ?>
                 </li>
             </ul>
         </div>

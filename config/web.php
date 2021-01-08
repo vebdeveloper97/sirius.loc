@@ -7,14 +7,44 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'uz',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'd.m.Y',
+            'datetimeFormat' => 'd.m.Y H:i:s',
+            'timeFormat' => 'H:i:s',
+            'nullDisplay' => '',
+        ],
+        'i18n' => [
+            'translations' => [
+                'yii2mod.rbac' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/rbac/messages',
+                ],
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'sourceLanguage' => 'uz-UZ',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/auth' => 'auth.php'
+                    ],
+                ],
+                'eav' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@mirocow/eav/messages',
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '7p1iPycJAWRinm7pQjBNmsR99XNuOyNd',
+            'baseUrl' => '',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -40,17 +70,27 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'categories' => ['save'],
+                    'logFile' => '@runtime/logs/save.log',
+                    'logVars' => []
+                ],
             ],
         ],
-        'db' => $db,
-        /*
+        'db' => $db['mysql'],
+        'db1' => $db['postgres'],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'class' => 'app\widgets\MultiLang\components\UrlManager',
+            'languages' => ['uz','ru','en'],
+            'enableLanguageDetection' => false,
+            'enableDefaultLanguageUrlCode' => true,
             'rules' => [
+
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
