@@ -11,8 +11,26 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@runtime' => '@app/runtime/logs',
+    ],
+    'modules' => [
+        'organizations' => [
+            'class' => 'app\modules\organizations\Module',
+        ],
+        'hr' => [
+            'class' => 'app\modules\hr\Module',
+        ],
+        'rbac' => [
+            'class' => 'app\modules\rbac\Module',
+        ],
+        'users' => [
+            'class' => 'app\modules\users\Module',
+        ],
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'dateFormat' => 'd.m.Y',

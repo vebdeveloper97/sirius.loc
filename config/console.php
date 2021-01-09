@@ -14,8 +14,12 @@ $config = [
         '@tests' => '@app/tests',
         '@mysql' => '@app/migrations/mysql',
         '@psql' => '@app/migrations/postgres',
+        '@runtime' => '@app/runtime/logs',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

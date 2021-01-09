@@ -25,14 +25,62 @@
             </div>
         </form>
         <!-- /.search form -->
-
+        <?php
+            $controller = Yii::$app->controller->id;
+            $action = Yii::$app->controller->action->id;
+        ?>
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+                    [
+                        'label' => Yii::t('app', 'Hr Employee'),
+                        'icon' => 'file-code-o',
+                        'url' => ['/hr/hr-employee/index'],
+                        'active' => $controller === 'hr-employee'
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Organizations'),
+                        'icon' => 'file-code-o',
+                        'url' => ['/organizations/organizations/index'],
+                        'active' => $controller === 'organizations'
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Rbac'),
+                        'icon' => 'file-code-o',
+                        'items' => [
+                            [
+                                'label' => Yii::t('app', 'AuthAssignment'),
+                                'icon' => 'file-code-o',
+                                'url' => ['/rbac/auth-assignment/index'],
+                                'active' => $controller === 'auth-assignment'
+                            ],
+                            [
+                                'label' => Yii::t('app', 'AuthItem'),
+                                'icon' => 'file-code-o',
+                                'url' => ['/rbac/auth-item/index'],
+                                'active' => $controller === 'auth-item'
+                            ],
+                            [
+                                'label' => Yii::t('app', 'AuthItemChild'),
+                                'icon' => 'file-code-o',
+                                'url' => ['/rbac/auth-item-child/index'],
+                                'active' => $controller === 'auth-item-child'
+                            ],
+                            [
+                                'label' => Yii::t('app', 'AuthRule'),
+                                'icon' => 'file-code-o',
+                                'url' => ['/rbac/auth-rule/index'],
+                                'active' => $controller === 'auth-rule'
+                            ],
+                        ],
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Users'),
+                        'icon' => 'users',
+                        'url' => ['/users/users/index'],
+                        'active' => $controller === 'users'
+                    ],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'Some tools',
