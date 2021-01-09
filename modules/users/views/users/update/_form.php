@@ -1,10 +1,14 @@
 <?php
+
+use app\modules\users\models\Users;
+
 /* @var $form \yii\bootstrap\ActiveForm */
 /* @var $model \app\modules\users\models\Users */
-unset($model->password);
+
+Users::getPasswordUnset($model);
 ?>
 
-<?= $form->field($model, 'old_password')->passwordInput() ?>
-<?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-<?= $form->field($model, 'repeat_password')->passwordInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'old_password')->passwordInput(['autocomplete' => 'off']) ?>
+<?= $form->field($model, 'password')->passwordInput(['autocomplete' => 'off']) ?>
+<?= $form->field($model, 'repeat_password')->passwordInput(['autocomplete' => 'off']) ?>
 

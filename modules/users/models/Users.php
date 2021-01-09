@@ -83,7 +83,7 @@ class Users extends BaseModel
                 'old_password', 'findPasswords'
             ],
             [
-                ['repeat_password', 'password'], 'required',
+                ['repeat_password', 'old_password', 'password'], 'required',
                 'on' => self::SCENARIO_NOTNEWRECORD,
             ],
             [
@@ -95,8 +95,9 @@ class Users extends BaseModel
             [['status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['last_activity'], 'safe'],
             [['username', 'auth_key'], 'string', 'max' => 50],
-            [['password', 'access_token'], 'string', 'max' => 100],
+            [['access_token'], 'string', 'max' => 100],
             [['old_password'], 'string', 'max' => 100],
+            [['password'], 'string', 'min' => 6, 'max' => 15],
             [['username'], 'unique'],
         ];
     }
@@ -106,6 +107,13 @@ class Users extends BaseModel
         $user = self::findOne(['username' => $this->username]);
         if(!Yii::$app->security->validatePassword($this->old_password, $user->password)){
             $this->addError($attribute, Yii::t('app', 'Old password error'));
+        }
+    }
+
+    public function getPasswordUnset($model)
+    {
+        if(strlen($model->password) > 15){
+            unset($model->password);
         }
     }
 
