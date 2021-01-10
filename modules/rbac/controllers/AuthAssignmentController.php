@@ -2,6 +2,7 @@
 
 namespace app\modules\rbac\controllers;
 
+use app\models\BaseModel;
 use Yii;
 use app\modules\rbac\models\AuthAssignment;
 use app\modules\rbac\models\AuthAssignmentSearch;
@@ -32,6 +33,7 @@ class AuthAssignmentController extends Controller
     /**
      * Lists all AuthAssignment models.
      * @return mixed
+     * @throws \yii\web\HttpException
      */
     public function actionIndex()
     {
