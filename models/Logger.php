@@ -14,7 +14,7 @@ class Logger extends ActiveRecord
 {
     private static function createFolderLog($path = 'errors'): string
     {
-        $year   = date('Y-m');
+        $year = date('Y-m');
         $path = Yii::getAlias('@runtime').'/'.$path.'/'.$year;
 
         if(!is_dir($path)){
