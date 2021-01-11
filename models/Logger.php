@@ -55,19 +55,19 @@ class Logger extends ActiveRecord
 
         $errors = [
             'message'      => '{ '.$message.' }',
-            'controller' => '{ '.$controller.' }',
-            'action'     => '{ '.$action.' }',
-            'module'     => '{ '.$modules.' }',
-            'date'       => '{ '.$date.' }',
+            'controller' => '{ Controller -  '.$controller.' }',
+            'action'     => '{ Action -'.$action.' }',
+            'module'     => '{ Module - '.$modules.' }',
+            'date'       => '{ Vaqt - '.$date.' }',
         ];
 
         if($model !== null)
         {
-            $errors['model'] = '{ '.$model.' }';
+            $errors['model'] = '{ Model - '.$model.' }';
         }
 
         try {
-            file_put_contents($log_file, Json::encode($errors), $write);
+            file_put_contents($log_file, $errors, $write);
         }
         catch (\Exception $e){
             throw new HttpException(404, $e->getMessage());
