@@ -2,10 +2,12 @@
 
 namespace app\modules\users\controllers;
 
+use app\models\BaseModel;
 use Yii;
 use app\modules\users\models\Users;
 use app\modules\users\models\UsersSearch;
 use yii\bootstrap\ActiveForm;
+use yii\db\Exception;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
