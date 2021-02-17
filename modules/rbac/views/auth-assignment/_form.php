@@ -1,5 +1,8 @@
 <?php
 
+use app\models\BaseModel;
+use app\modules\rbac\models\AuthAssignment;
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,11 +15,26 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'item_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'item_name')->widget(Select2::class,[
+        'data' => AuthAssignment::getAuthItems(),
+        'options' => [
+            'placeholder' => Yii::t('app', 'Select'),
+        ],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ]
+    ]) ?>
 
-    <?= $form->field($model, 'user_id')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'user_id')->widget(Select2::class, [
+        'data' => AuthAssignment::UsersSelects(),
+        'language' => 'uz',
+        'options' => [
+            'placeholder' => Yii::t('app', 'Select'),
+        ],
+        'pluginOptions' => [
+            'allowClear' => true
+        ]
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

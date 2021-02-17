@@ -2,33 +2,17 @@
 
 namespace app\modules\rbac\controllers;
 
+use app\controllers\BaseController;
 use Yii;
 use app\modules\rbac\models\AuthRule;
 use app\modules\rbac\models\AuthRuleSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * AuthRuleController implements the CRUD actions for AuthRule model.
  */
-class AuthRuleController extends Controller
+class AuthRuleController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all AuthRule models.
      * @return mixed

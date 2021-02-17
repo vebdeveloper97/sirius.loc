@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\rbac\models\AuthAssignment;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -28,7 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'item_name',
-            'user_id',
+            [
+                'attribute' => 'user_id',
+                'value' => function($model){
+                    $user = AuthAssignment::getUsername($model->user_id);
+                    return $user->username;
+                }
+            ],
             'created_at',
 
             ['class' => 'yii\grid\ActionColumn'],

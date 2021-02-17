@@ -2,32 +2,18 @@
 
 namespace app\modules\organizations\controllers;
 
+use app\controllers\BaseController;
 use Yii;
 use app\modules\organizations\models\Organizations;
 use app\modules\organizations\models\OrganizationsSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * OrganizationsController implements the CRUD actions for Organizations model.
  */
-class OrganizationsController extends Controller
+class OrganizationsController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Organizations models.

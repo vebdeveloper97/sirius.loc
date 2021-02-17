@@ -2,34 +2,18 @@
 
 namespace app\modules\rbac\controllers;
 
-use app\models\BaseModel;
+use app\controllers\BaseController;
 use Yii;
 use app\modules\rbac\models\AuthAssignment;
 use app\modules\rbac\models\AuthAssignmentSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * AuthAssignmentController implements the CRUD actions for AuthAssignment model.
  */
-class AuthAssignmentController extends Controller
+class AuthAssignmentController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all AuthAssignment models.
      * @return mixed

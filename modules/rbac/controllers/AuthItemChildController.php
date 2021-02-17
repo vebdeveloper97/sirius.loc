@@ -2,32 +2,18 @@
 
 namespace app\modules\rbac\controllers;
 
+use app\controllers\BaseController;
 use Yii;
 use app\modules\rbac\models\AuthItemChild;
 use app\modules\rbac\models\AuthItemChildSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * AuthItemChildController implements the CRUD actions for AuthItemChild model.
  */
-class AuthItemChildController extends Controller
+class AuthItemChildController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all AuthItemChild models.

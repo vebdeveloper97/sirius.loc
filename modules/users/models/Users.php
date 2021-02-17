@@ -66,6 +66,11 @@ class Users extends BaseModel
             if(empty($this->auth_key)){
                 $this->auth_key = Yii::$app->security->generateRandomString(50);
             }
+
+            if(empty($this->auth_key)){
+                $this->auth_key = Yii::$app->security->generateRandomString(50);
+            }
+
             return true;
         }
         else{

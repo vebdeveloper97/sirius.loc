@@ -2,6 +2,7 @@
 
 namespace app\modules\rbac\models;
 
+use app\models\BaseModel;
 use Yii;
 
 /**
@@ -22,7 +23,7 @@ use Yii;
  * @property AuthItem[] $children
  * @property AuthItem[] $parents
  */
-class AuthItem extends \yii\db\ActiveRecord
+class AuthItem extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -121,5 +122,12 @@ class AuthItem extends \yii\db\ActiveRecord
     public function getParents()
     {
         return $this->hasMany(AuthItem::className(), ['name' => 'parent'])->viaTable('{{%auth_item_child}}', ['child' => 'name']);
+    }
+
+    public static function getItemsName(): array
+    {
+        return self::find()
+            ->asArray()
+            ->all();
     }
 }

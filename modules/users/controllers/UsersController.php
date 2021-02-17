@@ -9,6 +9,7 @@ use app\modules\users\models\UsersSearch;
 use yii\bootstrap\ActiveForm;
 use yii\db\Exception;
 use yii\helpers\Json;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

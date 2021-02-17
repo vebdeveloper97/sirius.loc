@@ -1,34 +1,23 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace app\modules\hr\controllers;
 
+use app\controllers\BaseController;
+use app\modules\hr\models\HrPosition;
+use app\modules\hr\models\HrPositionCon;
+use app\modules\hr\models\HrUser;
+use app\modules\hr\models\Works;
 use Yii;
 use app\modules\hr\models\HrEmployee;
 use app\modules\hr\models\HrEmployeeSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * HrEmployeeController implements the CRUD actions for HrEmployee model.
  */
-class HrEmployeeController extends Controller
+class HrEmployeeController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all HrEmployee models.
      * @return mixed
@@ -64,14 +53,22 @@ class HrEmployeeController extends Controller
      */
     public function actionCreate()
     {
-        $model = new HrEmployee();
+        $model      = new HrEmployee();
+        $position   = new HrPosition();
+        $hruser     = new HrUser();
+        $works      = [new Works()];
+        $hrposition = new HrPositionCon();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'model'      => $model,
+            'position'   => $position,
+            'hruser'     => $hruser,
+            'works'      => $works,
+            'hrposition' => $hrposition
         ]);
     }
 
